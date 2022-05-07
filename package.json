@@ -1,0 +1,34 @@
+{
+  "name": "discord-hepta",
+  "version": "1.0.0-beta.11",
+  "description": "",
+  "main": "./lib/index.js",
+  "types": "./types/index.d.ts",
+  "scripts": {
+    "push:beta": "npm run build:src && npm publish --tag beta",
+    "push": "npm run build:src && npm publish",
+    "test:no-build": "node dist/test/bot.js",
+    "test": "npm run build && node dist/test/bot.js",
+    "build": "npm run build:src && npm run build:test",
+    "build:src": "tsc --build ./src/tsconfig.json",
+    "build:test": "tsc --build ./test/tsconfig.json"
+  },
+  "author": "jpillas07",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^17.0.30",
+    "@types/node-fetch": "^2.6.1",
+    "@types/ws": "^8.5.3",
+    "dotenv": "^16.0.0",
+    "node-fetch": "^2.6.5",
+    "ts-mixer": "^6.0.1",
+    "ws": "^8.5.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.6.4"
+  },
+  "files": [
+    "lib/**/*",
+    "types/**/*"
+  ]
+}

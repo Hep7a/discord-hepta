@@ -1,0 +1,7 @@
+/lib
+/types
+/dist
+test/Config.*
+node_modules
+reference.txt
+.vscode
