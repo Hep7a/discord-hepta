@@ -5,7 +5,6 @@ import { HeptaModule } from "../../HeptaModule";
 export class Listener extends HeptaModule {
     event: string;
     emitter: string;
-    handler: ListenerManager;
 
     constructor(event: string, emitter: string) {
         super(event);

@@ -1,6 +1,6 @@
 import { Command, Message } from "../../src";
 
-export class PingCommand extends Command {
+export default class PingCommand extends Command {
     constructor() {
         super("ping", {
             help: {

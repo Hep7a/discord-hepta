@@ -1,7 +1,7 @@
 import { GuildTextChannel, Listener } from "../../src";
 import { Message } from "../../src";
 
-export class MessageCreateListener extends Listener {
+export default class MessageCreateListener extends Listener {
     constructor() {
         super("messageCreate", "client");
     }

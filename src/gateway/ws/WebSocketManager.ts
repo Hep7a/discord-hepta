@@ -66,8 +66,10 @@ export class WebSocketManager {
     onClose({ code }: CloseEvent) {
         this.debug(code.toString());
         switch (code) {
+            case 4004:
+                throw new Error("[Gateway]: AUTHENTICATION_FAILED\nSomething might be wrong with your client config.\n")
             case 4014:
-                throw new Error("[Gateway]: DISALLOWED_INTENTS\nDouble check your intents, you may have defined an intent you're not allowed to use.")
+                throw new Error("[Gateway]: DISALLOWED_INTENTS\nDouble check your intents, you may have defined an intent you're not allowed to use.\n")
         }
     }
 

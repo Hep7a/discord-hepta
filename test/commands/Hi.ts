@@ -1,7 +1,7 @@
 import { Command } from "../../src";
 import { Message } from "../../src";
 
-export class HiCommand extends Command {
+export default class HiCommand extends Command {
     constructor() {
         super("hi", {
             aliases: ["hello"],
@@ -16,6 +16,6 @@ export class HiCommand extends Command {
     }
 
     exec(message: Message) {
-        message.channel.send("Hi!");
+        message.channel.send("Hi!")
     }
 }

@@ -7,8 +7,9 @@
   "scripts": {
     "push:beta": "npm run build:src && npm publish --tag beta",
     "push": "npm run build:src && npm publish",
-    "test:no-build": "node dist/test/bot.js",
+    "test:build-test": "npm run build:test && node dist/test/bot.js",
     "test": "npm run build && node dist/test/bot.js",
+    "test:no-build": "node dist/test/bot.js",
     "build": "npm run build:src && npm run build:test",
     "build:src": "tsc --build ./src/tsconfig.json",
     "build:test": "tsc --build ./test/tsconfig.json"

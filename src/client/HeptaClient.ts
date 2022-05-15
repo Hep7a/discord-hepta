@@ -1,6 +1,6 @@
 import EventEmitter = require("events");
 import { Guild, GuildMember, Message, User, WebSocketManager } from "../gateway";
-import { CommandManager, ListenerManager } from "../bot";
+import { CommandManager, CommandManagerOptions, CommandOptions, ListenerManager, ListenerManagerOptions } from "../bot";
 import { RestAPIManager } from "../rest";
 
 export interface ClientEvents {
@@ -17,6 +17,8 @@ export interface ClientConfig {
 }
 
 export interface ClientOptions {
+    command?: CommandManagerOptions;
+    listener?: ListenerManagerOptions;
     debug?: boolean;
 }
 
@@ -77,7 +79,11 @@ export class Client extends EventEmitter {
     constructor(config: ClientConfig, options?: ClientOptions) {
         super();
         this.config = config;
-        this.options = options;
+        this.options = {
+            command: options.command ?? null,
+            listener: options.listener ?? null,
+            debug: options.debug ?? false
+        }
 
         this.token = config.token;
         this.rest = new RestAPIManager(this, this.token);
@@ -88,16 +94,19 @@ export class Client extends EventEmitter {
         this.guilds = new Map();
         this.channels = new Map();
 
-        this.command = new CommandManager(this);
-        this.listener = new ListenerManager(this);
+        this.command = new CommandManager(this, this.options.command);
+        this.listener = new ListenerManager(this, this.options.listener);
     }
 
     connect() {
         this.ws.init();
     }
 
-    debug(tag: string, msg: string) {
+    debug(tag: string, msg: string | any) {
         if (this.options.debug === false) return;
+        if (msg !== typeof String) {
+            msg = `${msg}`
+        }
         console.log(`[${tag}]: ${msg}`);
     }
 }

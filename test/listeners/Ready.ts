@@ -1,6 +1,6 @@
 import { Listener } from "../../src";
 
-export class ReadyListener extends Listener {
+export default class ReadyListener extends Listener {
     constructor() {
         super("ready", "client");
     }

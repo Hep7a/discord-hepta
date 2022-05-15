@@ -1,6 +1,6 @@
 import { Guild, Listener } from "../../src";
 
-export class GuildCreateListener extends Listener {
+export default class GuildCreateListener extends Listener {
     constructor() {
         super("guildCreate", "client");
     }

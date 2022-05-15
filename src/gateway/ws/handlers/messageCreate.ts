@@ -7,7 +7,7 @@ import { Payload } from "../../structures/WebSocket";
 import { WebSocketManager } from "../WebSocketManager";
 
 export function messageCreate(ws: WebSocketManager, data: MessageData) {
-    console.log(data);
+    ws.debug(`${data}`);
     let channel = ws.client.channels.get(data.channel_id);
     if (!channel) {
         channel = new Channel(ws.client, {
