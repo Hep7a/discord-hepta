@@ -3,7 +3,7 @@ import { Client } from "../client";
 import { HeptaModule } from "./HeptaModule";
 
 export interface ModuleManagerOptions {
-    directory: string;
+    directory?: string;
 }
 
 export class ModuleManager {
@@ -12,12 +12,13 @@ export class ModuleManager {
 
     directory: string;
 
-    constructor(client: Client, options: ModuleManagerOptions) {
+    constructor(client: Client, options?: ModuleManagerOptions) {
         this.client = client;
-        this.directory = options.directory;
+        this.directory = options?.directory;
     }
 
     loadDir() {
+        if (!this.directory) return;
         const modFiles = readdirSync(this.directory);
         console.log(modFiles);
         for (const file of modFiles) {

@@ -1,6 +1,6 @@
 {
   "name": "discord-hepta",
-  "version": "1.0.0-beta.11",
+  "version": "1.0.1-beta.0",
   "description": "",
   "main": "./lib/index.js",
   "types": "./types/index.d.ts",

@@ -1,6 +1,6 @@
 import EventEmitter = require("events");
 import { Guild, GuildMember, Message, User, WebSocketManager } from "../gateway";
-import { CommandManager, CommandManagerOptions, CommandOptions, ListenerManager, ListenerManagerOptions } from "../bot";
+import { Command, CommandManager, CommandManagerOptions, CommandOptions, Listener, ListenerManager, ListenerManagerOptions } from "../bot";
 import { RestAPIManager } from "../rest";
 
 export interface ClientEvents {
@@ -109,4 +109,35 @@ export class Client extends EventEmitter {
         }
         console.log(`[${tag}]: ${msg}`);
     }
+
+    /* createCommand(options: CreateCommandOptions, exec: (message: Message, ...args: any) => void) {
+        const command = new Command(options.name, options.options);
+        command.exec = exec;
+    
+        this.command.register(command);
+        
+        return command;
+    } */
+
+    createCommand(name: string, exec: (message: Message, ...args: any) => any, options?: CommandOptions): Command {
+        const command = new Command(name, options);
+        command.exec = exec;
+
+        return command;
+    }
+
+    registerCommand(command: Command): Client {
+        this.command.register(command);
+        return this;
+    }
+    
+    registerListener(listener: Listener): Client {
+        this.listener.register(listener);
+        return this;
+    }
+}
+
+export interface CreateCommandOptions {
+    name: string;
+    options?: CommandOptions
 }

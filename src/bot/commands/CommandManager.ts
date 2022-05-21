@@ -15,11 +15,11 @@ export class CommandManager extends ModuleManager {
 
     prefix: string;
 
-    constructor(client: Client, options: CommandManagerOptions) {
+    constructor(client: Client, options?: CommandManagerOptions) {
         super(client, options);
         this.client = client;
         
-        this.prefix = options.prefix ?? client.config.prefix;
+        this.prefix = options?.prefix ?? client.config.prefix;
 
         this.loadDir();
         this.setup();
